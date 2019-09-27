@@ -1,12 +1,9 @@
 package ac.za.cput.repostory.demography;
 
 import ac.za.cput.domain.demography.Gender;
-import ac.za.cput.repostory.IRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Set;
-
-public interface GenderRepository extends IRepository<Gender, String> {
-    Gender retrieveByDesc(String genderDesc);
-
-    Set<Gender> getAll();
+@Repository
+public interface GenderRepository extends JpaRepository<Gender, String> {
 }

@@ -1,11 +1,11 @@
 package ac.za.cput.repostory.demography;
 
 import ac.za.cput.domain.demography.Race;
-import ac.za.cput.repostory.IRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-public interface RaceRepository extends IRepository<Race, String> {
-    Race retrieveByDesc(String raceDesc);
-    Set<Race> getAll();
+@Repository
+public interface RaceRepository extends JpaRepository<Race, String> {
 }

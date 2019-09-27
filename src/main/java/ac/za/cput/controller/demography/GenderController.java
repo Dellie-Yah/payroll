@@ -5,6 +5,7 @@ import ac.za.cput.domain.ResponseObj;
 import ac.za.cput.domain.demography.Gender;
 import ac.za.cput.factory.ResponseObjFactory;
 import ac.za.cput.factory.demography.GenderFactory;
+import ac.za.cput.service.demography.GenderService;
 import ac.za.cput.service.demography.impl.GenderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -19,7 +21,7 @@ import java.util.Set;
 public class GenderController {
 
     @Autowired
-    GenderServiceImpl genderService;
+    private GenderService genderService;
 
     @PostMapping(value = "/create/{gender}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createGender(@PathVariable String gender) {
@@ -45,7 +47,7 @@ public class GenderController {
     @GetMapping(value = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll(){
         ResponseObj responseObj = ResponseObjFactory.buildGenericResponseObj(HttpStatus.OK.toString(), "Success");
-        Set<Gender> genders = genderService.getAll();
+        List<Gender> genders = genderService.getAll();
         responseObj.setResponse(genders);
         return ResponseEntity.ok(responseObj);
     }

@@ -1,8 +1,16 @@
 package ac.za.cput.domain.demography;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Race {
 
-    private String id, desc;
+    @Id
+    private String id;
+    @Column(name = "description" )
+    private String desc;
 
     private Race(){}
 

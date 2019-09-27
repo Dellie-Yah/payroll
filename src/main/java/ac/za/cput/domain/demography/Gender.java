@@ -1,8 +1,15 @@
 package ac.za.cput.domain.demography;
 
+import javax.persistence.*;
+
+@Entity
 public class Gender {
 
-    private String id, desc;
+    @Id
+    private String id;
+    @Column(name = "gender_name" )
+    @OneToMany()
+    private String desc;
 
     private Gender() {}
 

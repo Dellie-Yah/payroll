@@ -4,6 +4,7 @@ import ac.za.cput.domain.ResponseObj;
 import ac.za.cput.domain.demography.Race;
 import ac.za.cput.factory.ResponseObjFactory;
 import ac.za.cput.factory.demography.RaceFactory;
+import ac.za.cput.service.demography.RaceService;
 import ac.za.cput.service.demography.impl.RaceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -18,7 +20,7 @@ import java.util.Set;
 public class RaceController {
 
     @Autowired
-    private RaceServiceImpl raceService;
+    private RaceService raceService;
 
     @PostMapping(value = "/create/{race}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createRace(@PathVariable String race) {
@@ -44,7 +46,7 @@ public class RaceController {
     @GetMapping(value = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll(){
         ResponseObj responseObj = ResponseObjFactory.buildGenericResponseObj(HttpStatus.OK.toString(), "Success");
-        Set<Race> races = raceService.getAll();
+        List<Race> races = raceService.getAll();
         responseObj.setResponse(races);
         return ResponseEntity.ok(responseObj);
     }
